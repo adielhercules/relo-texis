@@ -64,10 +64,10 @@
 .searchButton {
   color: var(--text-color-secondary);
   grid-area: searchButton;
-  width: var(--size-input);
+  /* width: var(--size-input); */
   height: var(--size-input);
-  display: grid;
-  place-items: center;
+  display: flex;
+  /* place-items: center; */
 }
 
 .searchButton:hover {

@@ -16,6 +16,7 @@
   align-items: center;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
+  font-size: 1.25rem;
 }
 
 .navLink:hover {

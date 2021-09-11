@@ -32,7 +32,7 @@ export function Filters({
   return (
     <>
       <CheckFilter
-        name="Type"
+        name="Tipo"
         items={productTypes}
         selectedItems={filters.productTypes}
         setSelectedItems={(value) => updateFilter("productTypes", value)}
@@ -53,7 +53,7 @@ export function Filters({
                   }))
                 }
               >
-                Reset
+                Resetear
               </button>
             )}
           </div>
@@ -61,7 +61,7 @@ export function Filters({
         <div className={priceFields}>
           <CurrencyField
             {...currencyCode}
-            aria-label="Minimum price"
+            aria-label="Precio minimo"
             value={filters.minPrice}
             onChange={(event) =>
               updateNumeric("minPrice", event.currentTarget.value)
@@ -70,7 +70,7 @@ export function Filters({
           –{" "}
           <CurrencyField
             {...currencyCode}
-            aria-label="Maximum price"
+            aria-label="Precio maximo"
             value={filters.maxPrice}
             onChange={(event) =>
               updateNumeric("maxPrice", event.currentTarget.value)
@@ -78,17 +78,17 @@ export function Filters({
           />
         </div>
       </details>
-      <hr />
+      {/* <hr />
       <CheckFilter
         name="Brands"
         items={vendors}
         selectedItems={filters.vendors}
         setSelectedItems={(value) => updateFilter("vendors", value)}
-      />
+      /> */}
       <hr />
       <CheckFilter
         open={true}
-        name="Tags"
+        name="Etiquetas"
         items={tags}
         selectedItems={filters.tags}
         setSelectedItems={(value) => updateFilter("tags", value)}

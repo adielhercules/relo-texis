@@ -22,8 +22,8 @@ export const query = graphql`
 function Hero (props) {
   return (
     <div className={container}>
-      <h1 className={intro}>Welcome to the GatsbyJS + Shopify Demo Store.</h1>
-      {!!process.env.GATSBY_DEMO_STORE && (
+      <h1 className={intro}>Bienvenido. Encuentra productos a precios bajos!</h1>
+      {/* {!!process.env.GATSBY_DEMO_STORE && (
         <>
           <p className={callOut}>
             It's a proof-of-concept in a box, with 10k products and 30k variants
@@ -42,7 +42,7 @@ function Hero (props) {
             </a>
           </p>
         </>
-      )}
+      )} */}
     </div>
   )
 }

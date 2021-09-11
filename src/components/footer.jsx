@@ -11,6 +11,8 @@ import {
 } from "./footer.module.css"
 
 export function Footer() {
+  return null;
+  
   return (
     <footer className={footerStyle}>
       <div className={blurb}>
