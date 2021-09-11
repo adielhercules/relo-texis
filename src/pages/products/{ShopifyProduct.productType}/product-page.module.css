@@ -27,6 +27,7 @@
 .productImageList {
   display: flex;
   overflow-x: auto;
+  background-color: #f2f2f2;
 }
 
 .productImageListItem {
@@ -38,11 +39,16 @@
 .scrollForMore {
   text-align: center;
   margin-top: 1rem;
-  display: none;
+  /* display: none; */
   font-size: var(--text-lg);
   transform: translate3d(-50%, 0px, 0px);
   left: 50%;
   position: absolute;
+}
+
+.scrollForMore button {
+  border: 1px solid #000;
+  padding: 3px 5px;
 }
 
 .noImagePreview {
@@ -84,9 +90,9 @@
 }
 
 .addToCartStyle {
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  gap: var(--space-lg);
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg); */
 }
 
 .selectVariant {

@@ -2,14 +2,14 @@ require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
-    siteTitle: "gatsby-starter-shopify",
-    siteTitleDefault: "gatsby-starter-shopify by @GatsbyJS",
-    siteUrl: "https://shopify-demo.gatsbyjs.com",
-    hrefLang: "en",
+    siteTitle: "Venta de articulos",
+    siteTitleDefault: "Venta de articulos",
+    siteUrl: "https://ventafugaz.gatsbyjs.io",
+    hrefLang: "es",
     siteDescription:
-      "A Gatsby starter using the latest Shopify plugin showcasing a store with product overview, individual product pages, and a cart.",
+      "Venta de articulos de hogar y varios.",
     siteImage: "/default-og-image.jpg",
-    twitter: "@gatsbyjs",
+    twitter: "@adielhercules",
   },
   flags: {
     FAST_DEV: true,

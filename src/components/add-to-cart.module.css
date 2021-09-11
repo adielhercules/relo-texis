@@ -1,16 +1,27 @@
-.addToCart {
+.addToCart,
+.messenger,
+.phone {
   display: flex;
   flex-direction: row;
   color: var(--text-color-inverted);
   background-color: var(--primary);
   align-self: flex-end;
   padding: var(--space-sm) var(--space-xl);
-  border-radius: var(--radius-md);
+  border-radius: 0px;
   font-weight: var(--bold);
   align-items: center;
   height: var(--size-input);
   justify-content: center;
   transition: var(--transition);
+  margin-top: 8px;
+}
+
+.messenger {
+  background-color: #1876ea;
+}
+
+.phone {
+  background-color: #777;
 }
 
 .addToCart:hover {

@@ -216,7 +216,7 @@ function SearchPage({
         >
           {isFetching ? (
             <p className={progressStyle}>
-              <Spinner aria-valuetext="Buscando" /> Buscndo
+              <Spinner aria-valuetext="Buscando" /> Buscando
               {filters.term ? ` for "${filters.term}"…` : `…`}
             </p>
           ) : (
@@ -238,7 +238,7 @@ function SearchPage({
                     product={{
                       title: node.title,
                       priceRangeV2: node.priceRangeV2,
-                      slug: `/products${slugify(node.productType)}/${
+                      slug: `/products/${slugify(node.productType)}/${
                         node.handle
                       }`,
                       // The search API and Gatsby data layer have slightly different images available.

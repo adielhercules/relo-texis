@@ -35,3 +35,37 @@
 .navLink[aria-active="page"]:hover {
   color: var(--primary);
 }
+
+.menu {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  background-color: white;
+  bottom: 5px;
+  overflow: auto;
+  margin-left: 150px;
+  box-shadow: 0 0 10px #00000017;
+  border-radius: 15px;
+  border: 1px solid #d5ded9;
+  padding-right: 45px;
+  z-index: 3;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0.2;
+  z-index: 2;
+}
+
+.button {
+  font-size: 1.25rem; 
+  color: var(--text-color-secondary);
+  border: 1px solid var(--text-color-secondary);
+  padding: 3px;
+  border-radius: 6px;
+}

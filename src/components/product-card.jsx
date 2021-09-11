@@ -30,7 +30,11 @@ export function ProductCard({ product, eager }) {
   const defaultImageHeight = 200
   const defaultImageWidth = 200
   let storefrontImageData = {}
-  if (storefrontImages) {
+  if (
+    storefrontImages &&
+    storefrontImages.edges &&
+    storefrontImages.edges.length > 0
+  ) {
     const storefrontImage = storefrontImages.edges[0].node
     try {
       storefrontImageData = getShopifyImage({
@@ -44,27 +48,22 @@ export function ProductCard({ product, eager }) {
     }
   }
 
-  const hasImage = firstImage || Object.getOwnPropertyNames(storefrontImageData || {}).length
+  const hasImage =
+    firstImage || Object.getOwnPropertyNames(storefrontImageData || {}).length
 
   return (
-    <Link
-      className={productCardStyle}
-      to={slug}
-      aria-label={`Ver ${title}`}
-    >
-      {hasImage
-        ? (
-          <div className={productImageStyle} data-name="product-image-box">
-            <GatsbyImage
-              alt={firstImage?.altText ?? title}
-              image={firstImage?.gatsbyImageData ?? storefrontImageData}
-              loading={eager ? "eager" : "lazy"}
-            />
-          </div>
-        ) : (
-          <div style={{ height: defaultImageHeight, width: defaultImageWidth }} />
-        )
-      }
+    <Link className={productCardStyle} to={slug} aria-label={`Ver ${title}`}>
+      {hasImage ? (
+        <div className={productImageStyle} data-name="product-image-box">
+          <GatsbyImage
+            alt={firstImage?.altText ?? title}
+            image={firstImage?.gatsbyImageData ?? storefrontImageData}
+            loading={eager ? "eager" : "lazy"}
+          />
+        </div>
+      ) : (
+        <div style={{ height: defaultImageHeight, width: defaultImageWidth, backgroundColor: '#f2f2f2' }} />
+      )}
       <div className={productDetailsStyle}>
         <h2 as="h2" className={productHeadingStyle}>
           {title}

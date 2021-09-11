@@ -98,9 +98,18 @@ export default function Product({ data: { product, suggestions } }) {
     variant.price
   )
 
-  const hasVariants = variants.length > 1
-  const hasImages = images.length > 0
-  const hasMultipleImages = true || images.length > 1
+  const hasVariants = React.useMemo(() => variants.length > 1, [variants])
+  const hasImages = React.useMemo(() => images.length > 0, [images])
+  const hasMultipleImages = React.useMemo(() => images.length > 1, [images])
+  const [active, setActive] = React.useState(0)
+
+  const next = React.useCallback(() => {
+    setActive((current) => (current + 1) % images.length)
+  }, [images])
+
+  const prev = React.useCallback(() => {
+    setActive((current) => (current - 1 + images.length) % images.length)
+  }, [images])
 
   return (
     <Layout>
@@ -121,36 +130,37 @@ export default function Product({ data: { product, suggestions } }) {
                 aria-describedby="instructions"
               >
                 <ul className={productImageList}>
-                  {images.map((image, index) => (
-                    <li
-                      key={`product-image-${image.id}`}
-                      className={productImageListItem}
-                    >
-                      <GatsbyImage
-                        objectFit="contain"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        alt={
-                          image.altText
-                            ? image.altText
-                            : `Product Image of ${title} #${index + 1}`
-                        }
-                        image={image.gatsbyImageData}
-                      />
-                    </li>
-                  ))}
+                  {images.map(
+                    (image, index) =>
+                      index === active && (
+                        <li
+                          key={`product-image-${image.id}`}
+                          className={productImageListItem}
+                        >
+                          <GatsbyImage
+                            objectFit="contain"
+                            loading="eager"
+                            alt={
+                              image.altText
+                                ? image.altText
+                                : `Product Image of ${title} #${index + 1}`
+                            }
+                            image={image.gatsbyImageData}
+                          />
+                        </li>
+                      )
+                  )}
                 </ul>
               </div>
               {hasMultipleImages && (
                 <div className={scrollForMore} id="instructions">
-                  <span aria-hidden="true">←</span> scroll for more{" "}
-                  <span aria-hidden="true">→</span>
+                  <button onClick={prev}>←</button> Imagen {active + 1}/
+                  {images.length} <button onClick={next}>→</button>
                 </div>
               )}
             </div>
           )}
-          {!hasImages && (
-            <span className={noImagePreview}>Sin imagen</span>
-          )}
+          {!hasImages && <span className={noImagePreview}>Sin imagen</span>}
           <div>
             <div className={breadcrumb}>
               <Link to={product.productTypeSlug}>{product.productType}</Link>
@@ -179,8 +189,11 @@ export default function Product({ data: { product, suggestions } }) {
                   </div>
                 ))}
             </fieldset>
-            {/* <div className={addToCartStyle}>
-              <NumericInput
+            <hr />
+            <p>&nbsp;</p>
+            <p><strong>Contactar</strong></p>
+            <div className={addToCartStyle}>
+              {/* <NumericInput
                 aria-label="Quantity"
                 onIncrement={() => setQuantity((q) => Math.min(q + 1, 20))}
                 onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -193,19 +206,24 @@ export default function Product({ data: { product, suggestions } }) {
                 variantId={productVariant.storefrontId}
                 quantity={quantity}
                 available={available}
-              />
-            </div> */}
+              /> */}
+              <AddToCart />
+            </div>
             <div className={metaSection}>
-              <span className={labelFont}>Tipo</span>
+              <span className={labelFont}>Categoria:</span>
               <span className={tagList}>
                 <Link to={product.productTypeSlug}>{product.productType}</Link>
               </span>
-              <span className={labelFont}>Etiquetas</span>
-              <span className={tagList}>
-                {product.tags.map((tag) => (
-                  <Link to={`/search?t=${tag}`}>{tag}</Link>
-                ))}
-              </span>
+              {product.tags.length > 0 && (
+                <>
+                  <span className={labelFont}>Etiquetas:</span>
+                  <span className={tagList}>
+                    {product.tags.map((tag) => (
+                      <Link to={`/search?t=${tag}`}>{tag}</Link>
+                    ))}
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -215,7 +233,7 @@ export default function Product({ data: { product, suggestions } }) {
 }
 
 export const query = graphql`
-  query($id: String!, $productType: String!) {
+  query ($id: String!, $productType: String!) {
     product: shopifyProduct(id: { eq: $id }) {
       title
       description
