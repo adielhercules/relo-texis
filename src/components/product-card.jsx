@@ -93,5 +93,6 @@ export const query = graphql`
       }
     }
     vendor
+    status
   }
 `

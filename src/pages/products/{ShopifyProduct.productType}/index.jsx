@@ -28,7 +28,7 @@ export default function ProductTypeIndex({
 export const query = graphql`
   query($productType: String!) {
     products: allShopifyProduct(
-      filter: { productType: { eq: $productType } }
+      filter: { productType: { eq: $productType }, status: { nin: ["ARCHIVED", "DRAFT"] } }
       sort: { fields: publishedAt, order: ASC }
       limit: 24
     ) {
