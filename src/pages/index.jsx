@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { Layout } from "../components/layout"
 import { ProductListing } from "../components/product-listing"
 import {
@@ -22,7 +22,8 @@ export const query = graphql`
 function Hero (props) {
   return (
     <div className={container}>
-      <h1 className={intro}>Bienvenido. Encuentra productos a precios bajos!</h1>
+      <h1 className={intro}>Venta de Garage! Nuevos productos cada semana.</h1>
+      <h2 className={callOut}>Productos destacados</h2>
       {/* {!!process.env.GATSBY_DEMO_STORE && (
         <>
           <p className={callOut}>
@@ -52,6 +53,7 @@ export default function IndexPage({ data }) {
     <Layout>
       <Hero />
       <ProductListing products={data?.shopifyCollection?.products} />
+      <Link to="/products" className={callToAction}>Ver todos los productos</Link>
     </Layout>
   )
 }

@@ -39,7 +39,7 @@ export function Navigation({ className }) {
           to="/products/"
           activeClassName={activeLink}
         >
-          TODO
+          TODOS
         </Link>
         <button onClick={toggle} className={button}>Seleccionar categoria</button>
       </nav>

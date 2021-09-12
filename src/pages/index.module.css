@@ -2,7 +2,7 @@
   padding-left: var(--size-gutter-raw);
   padding-right: var(--size-gutter-raw);
   padding-top: var(--space-lg);
-  padding-bottom: var(--space-3xl);
+  padding-bottom: var(--space-2xl);
   max-width: 76ch;
 }
 
@@ -21,6 +21,9 @@
   line-height: var(--dense);
   letter-spacing: var(--tight);
   color: var(--text-color-secondary);
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  margin-top: 10px;
 }
 
 .callOut > strong {
@@ -32,7 +35,12 @@
   line-height: var(--dense);
   line-height: var(--dense);
   letter-spacing: var(--tight);
-  color: var(--text-color-secondary);
+  color: white;
+  background-color: #299629;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  display: inline-block;
 }
 
 .deployButton {

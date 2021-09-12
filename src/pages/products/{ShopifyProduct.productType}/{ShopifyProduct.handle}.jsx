@@ -27,6 +27,11 @@ import {
   addToCartStyle,
   metaSection,
   productDescription,
+  previewImages,
+  previewImagesUl,
+  previewImagesLi,
+  active as activeClass,
+  scrollForMoreContainer
 } from "./product-page.module.css"
 
 export default function Product({ data: { product, suggestions } }) {
@@ -139,7 +144,7 @@ export default function Product({ data: { product, suggestions } }) {
                         >
                           <GatsbyImage
                             objectFit="contain"
-                            loading="eager"
+                            loading="lazy"
                             alt={
                               image.altText
                                 ? image.altText
@@ -153,10 +158,42 @@ export default function Product({ data: { product, suggestions } }) {
                 </ul>
               </div>
               {hasMultipleImages && (
-                <div className={scrollForMore} id="instructions">
-                  <button onClick={prev}>←</button> Imagen {active + 1}/
-                  {images.length} <button onClick={next}>→</button>
-                </div>
+                <>
+                  <div className={previewImages}>
+                    <ul className={previewImagesUl}>
+                      {images.map((image, index) => (
+                        <li
+                          key={`product-image-${image.id}`}
+                          className={`${previewImagesLi} ${
+                            index === active ? activeClass : ""
+                          }`}
+                        >
+                          <button onClick={() => setActive(index)}>
+                            <GatsbyImage
+                              objectFit="contain"
+                              loading="lazy"
+                              alt={
+                                image.altText
+                                  ? image.altText
+                                  : `Product Image of ${title} #${index + 1}`
+                              }
+                              image={image.gatsbyImageData}
+                            />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={scrollForMoreContainer}>
+                    <div className={scrollForMore} id="instructions">
+                      <button onClick={prev}>←</button>{" "}
+                      <span>
+                        Imagen {active + 1}/{images.length}
+                      </span>{" "}
+                      <button onClick={next}>→</button>
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           )}
@@ -191,7 +228,9 @@ export default function Product({ data: { product, suggestions } }) {
             </fieldset>
             <hr />
             <p>&nbsp;</p>
-            <p><strong>Contactar</strong></p>
+            <p>
+              <strong>Contactar</strong>
+            </p>
             <div className={addToCartStyle}>
               {/* <NumericInput
                 aria-label="Quantity"

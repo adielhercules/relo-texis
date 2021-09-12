@@ -36,6 +36,10 @@
   white-space: nowrap;
 }
 
+.scrollForMoreContainer {
+  height: 45px;
+}
+
 .scrollForMore {
   text-align: center;
   margin-top: 1rem;
@@ -47,8 +51,23 @@
 }
 
 .scrollForMore button {
-  border: 1px solid #000;
-  padding: 3px 5px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: rgb(0 0 0 / 14%);
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 1100px) {
+  .scrollForMore span {
+    display: none
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .scrollForMoreContainer {
+    display: none
+  }
 }
 
 .noImagePreview {
@@ -183,4 +202,48 @@
   .productBox {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.previewImages {
+  padding: 5px 0 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.previewImagesUl {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.previewImagesLi {
+  margin-right: 5px;
+  width: 80px;
+  height: 80px;
+  opacity: 0.5;
+  border: 2px solid #999;
+  border-radius: var(--radius-md);
+  margin-bottom: 4px;
+}
+
+@media screen and (max-width: 1400px) {
+  .previewImagesLi {
+    min-width: 65px;
+    min-height: 65px;
+    width: 12.5%;
+    height: 12.5%;
+  }
+}
+
+@media screen and (max-width: 945px) {
+  .previewImagesLi {
+    min-width: 50px;
+    min-height: 50px;
+    width: 20%;
+    height: 20%;
+  }
+}
+
+.previewImagesLi.active {
+  border-color: #299629;
+  opacity: 1;
 }
