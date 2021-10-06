@@ -31,8 +31,9 @@ import {
   previewImagesUl,
   previewImagesLi,
   active as activeClass,
-  scrollForMoreContainer
+  scrollForMoreContainer,
 } from "./product-page.module.css"
+import { priceReduction } from "../../../components/product-card.module.css"
 
 export default function Product({ data: { product, suggestions } }) {
   const {
@@ -101,6 +102,11 @@ export default function Product({ data: { product, suggestions } }) {
   const price = formatPrice(
     priceRangeV2.minVariantPrice.currencyCode,
     variant.price
+  )
+
+  const compareAtPrice = formatPrice(
+    priceRangeV2.minVariantPrice.currencyCode,
+    variant.compareAtPrice
   )
 
   const hasVariants = React.useMemo(() => variants.length > 1, [variants])
@@ -207,6 +213,9 @@ export default function Product({ data: { product, suggestions } }) {
             <p className={productDescription}>{description}</p>
             <h2 className={priceValue}>
               <span>{price}</span>
+              {variant.price !== variant.compareAtPrice && (
+                <span className={priceReduction}>{compareAtPrice}</span>
+              )}
             </h2>
             <fieldset className={optionsWrapper}>
               {hasVariants &&
@@ -306,6 +315,7 @@ export const query = graphql`
           name
           value
         }
+        compareAtPrice
       }
       options {
         name

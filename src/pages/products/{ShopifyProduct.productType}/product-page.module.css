@@ -80,8 +80,11 @@
 
 .priceValue > span {
   font-size: var(--text-display);
-  font-weight: var(--bold);
   line-height: var(--dense);
+}
+
+.priceValue > span:first-child {
+  font-weight: var(--bold);
   color: var(--primary);
 }
 

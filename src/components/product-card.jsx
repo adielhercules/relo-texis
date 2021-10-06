@@ -10,6 +10,7 @@ import {
   productDetailsStyle,
   productVendorStyle,
   productPrice,
+  priceReduction,
 } from "./product-card.module.css"
 
 export function ProductCard({ product, eager }) {
@@ -20,11 +21,17 @@ export function ProductCard({ product, eager }) {
     images: [firstImage],
     vendor,
     storefrontImages,
+    variants,
   } = product
 
   const price = formatPrice(
     priceRangeV2.minVariantPrice.currencyCode,
     priceRangeV2.minVariantPrice.amount
+  )
+
+  const compareAtPrice = formatPrice(
+    priceRangeV2.minVariantPrice.currencyCode,
+    variants?.length > 0 ? variants[0]?.compareAtPrice : 0
   )
 
   const defaultImageHeight = 200
@@ -62,13 +69,31 @@ export function ProductCard({ product, eager }) {
           />
         </div>
       ) : (
-        <div style={{ height: defaultImageHeight, width: defaultImageWidth, backgroundColor: '#f2f2f2' }} />
+        <div
+          style={{
+            height: defaultImageHeight,
+            width: defaultImageWidth,
+            backgroundColor: "#f2f2f2",
+          }}
+        />
       )}
       <div className={productDetailsStyle}>
         <h2 as="h2" className={productHeadingStyle}>
           {title}
         </h2>
-        <div className={productPrice}>{price}</div>
+        <div className={productPrice}>
+          <span>{price}</span>
+          {
+            <>
+              {variants?.length > 0 &&
+                variants[0]?.compareAtPrice &&
+                variants[0]?.compareAtPrice !==
+                  priceRangeV2.minVariantPrice.amount && (
+                  <span className={priceReduction}>{compareAtPrice}</span>
+                )}
+            </>
+          }
+        </div>
       </div>
     </Link>
   )
@@ -91,6 +116,9 @@ export const query = graphql`
         amount
         currencyCode
       }
+    }
+    variants {
+      compareAtPrice
     }
     vendor
     status

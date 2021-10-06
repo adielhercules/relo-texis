@@ -33,6 +33,9 @@ query ($query: String!, $sortKey: ProductSortKeys, $first: Int, $last: Int, $aft
             amount
           }
         }
+        variants {
+          compareAtPrice
+        }
         id
         images(first: 1) {
           edges {

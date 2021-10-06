@@ -44,3 +44,16 @@
   font-weight: 600;
   font-size: 1.6rem;
 }
+
+.productPrice span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.priceReduction {
+  margin-left: 5px;
+  font-size: 0.8em;
+  color: #707070;
+  text-decoration: line-through;
+  font-weight: 400;
+}

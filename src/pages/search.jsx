@@ -62,6 +62,9 @@ export const query = graphql`
               amount
             }
           }
+          variants {
+            compareAtPrice
+          }
           id
           images {
             gatsbyImageData(aspectRatio: 1, width: 200, layout: FIXED)
@@ -245,6 +248,7 @@ function SearchPage({
                       images: isDefault ? node.images : [],
                       storefrontImages: !isDefault && node.images,
                       vendor: node.vendor,
+                      variants: node.variants,
                     }}
                   />
                 </li>
